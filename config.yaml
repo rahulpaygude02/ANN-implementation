@@ -1,0 +1,21 @@
+params:
+  epochs: 30
+  batch_size: 32
+  num_classes: 10
+  loss_fuction : sparse_categorical_crossentropy
+  optimizer: SGD
+  matrics : accuracy
+  validation_datasize: 5000
+
+artifacts:
+  artifacts_dir: artifacts
+  model_dir: model
+  plots_dir: plots
+  checkpoint_dir: checkpoints
+  model_name: model.h5
+
+logs:
+  logs_dir: logs_dir
+  general_logs: general_logs
+  tensorboard_logs: tensorboard_logs
+
