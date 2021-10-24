@@ -3,6 +3,7 @@ import argparse,os
 from src.utils.data_mgmt import get_data
 from utils.model import create_model,save_model
 from src.utils.model import create_model
+from src.utils.callbacks import get_callbacks
 
 def training(config_path):
     config = read_config(config_path)
@@ -18,7 +19,9 @@ def training(config_path):
     EPOCHS = config["params"]["epochs"]
     VALIDATION_SET = (x_valid,y_valid)
 
-    data=model.fit(x_train_small,y_train_small,epochs = EPOCHS,validation_data=VALIDATION_SET)
+    callback_list = get_callbacks(config,x_train_small)
+
+    data=model.fit(x_train_small,y_train_small,epochs = EPOCHS,validation_data=VALIDATION_SET,callbacks=callback_list)
 
     artifacts_dir = config["artifacts"]["artifacts_dir"]
     model_dir = config["artifacts"]["model_dir"]
